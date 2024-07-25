@@ -1,3 +1,5 @@
+import 'dart:io';
+
 void main(){
   String nome = 'morango';
   double peso = 1.4;
@@ -14,6 +16,9 @@ void main(){
   mandioca.printAlimento();
   mandioca.cozinhando();
   limao.existeRefri(true);
+  limao.separarIngrediente();
+  limao.prepararMassa();
+  macamia.prepararMassa();
 }
 
 class Alimento{
@@ -28,7 +33,7 @@ class Alimento{
 }
 
 
-class Frutas extends Alimento{
+class Frutas extends Alimento implements Bolo{
   String sabor;
   int diasAposColheita;
   bool? isMadura;
@@ -41,6 +46,24 @@ class Frutas extends Alimento{
     isMadura = diasParaMadura <= diasAposColheita;
     print('A sua fruta está madura? $isMadura');
     print('Pois foi colhida a $diasAposColheita e precisa de $diasParaMadura para ficar madura.');
+  }
+
+    @override
+  void assar() {
+    // TODO: implement assar
+    print('Assando seu bolo de $nome.');
+  }
+  
+  @override
+  void prepararMassa() {
+    // TODO: implement prepararMassa
+    print('Preparando a massa do seu bolo de $nome.');
+  }
+  
+  @override
+  void separarIngrediente() {
+    // TODO: implement separarIngrediente
+    print('Separando os ingredientes do seu bolo de $nome.');
   }
 }
 
@@ -72,7 +95,7 @@ class Citricas extends Frutas{
   }
 }
 
-class Nozes extends Frutas implements Bolo{
+class Nozes extends Frutas{
   double porcentagemOleo;
 
   Nozes(String nome, double peso, String cor, String sabor, int diasAposColheita, this.porcentagemOleo, {bool? isMadura}):super(nome, peso, cor, sabor, diasAposColheita);
@@ -80,20 +103,12 @@ class Nozes extends Frutas implements Bolo{
   void podeNaDieta(){
     print('A poncentagmem de oleosidade é de $porcentagemOleo%.');
   }
-  
-  @override
-  void assar() {
-    // TODO: implement assar
-  }
-  
+
   @override
   void prepararMassa() {
     // TODO: implement prepararMassa
-  }
-  
-  @override
-  void separarIngrediente() {
-    // TODO: implement separarIngrediente
+    print('Abrir a $nome.');
+    super.prepararMassa();
   }
 }
 
